@@ -1,0 +1,26 @@
+{
+    "name": "dario_swain/drupal-fixer",
+    "description": "Checks and fixes Drupal deprecated code.",
+    "type": "project",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Ilya Pokamestov",
+            "email": "dario_swain@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": "~7.1",
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "DS\\DrupalFixer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DS\\DrupalFixer\\Tests\\": "tests"
+        }
+    }
+}
