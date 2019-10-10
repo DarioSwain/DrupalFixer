@@ -11,7 +11,7 @@
 
 namespace DS\DrupalFixer\Tests\Fixer;
 
-use PhpCsFixer\Tests\Test\AbstractFixerTestCase;
+use DS\DrupalFixer\Tests\Test\AbstractFixerTestCase;
 
 /**
  * @author Ilya Pokamestov <dario_swain@yahoo.com>
@@ -35,6 +35,11 @@ final class SetMessageFixerTest extends AbstractFixerTestCase
 
     public function provideFixCases()
     {
-        return [];
+        return [
+            [
+                '<?php drupal_set_message(\'Hello world\', \'custom\');', // This is expected output
+                '<?php \Drupal::messenger()->addMessage(\'Hello world\', \'custom\');', // This is input
+            ],
+        ];
     }
 }
