@@ -46,7 +46,7 @@ final class SetMessageRector extends AbstractRector
                 'drupal_set_message("...", "...");',
                 '\Drupal::messenger()->addMessage("...", "...");',
                 [
-//                    'view' => ['this', 'render'],
+                //                    'view' => ['this', 'render'],
                 ]
             ),
         ]);
