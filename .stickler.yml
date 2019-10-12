@@ -1,7 +1,8 @@
 linters:
   phpcs:
-    standard: PSR2
     fixer: true
+    config: ./phpcs.xml
+    exclude: 'Generic.Files.LineLength'
 files:
   ignore:
     - 'vendor/*'
