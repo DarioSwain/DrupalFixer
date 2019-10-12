@@ -47,7 +47,7 @@ TBD
 
 ## Issues
 
-Submit issues and feature requests here: https://github.com/mglaman/drupal-check/issues.
+Submit issues and feature requests here: https://github.com/DarioSwain/DrupalFixer/issues.
 
 ### Known Issues
 
