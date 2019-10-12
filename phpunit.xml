@@ -9,7 +9,7 @@
         beStrictAboutOutputDuringTests="true"
         beStrictAboutTestsThatDoNotTestAnything="true"
         beStrictAboutTodoAnnotatedTests="true"
-        bootstrap="./vendor/autoload.php"
+        bootstrap="./tests/bootstrap.php"
         colors="true"
         columns="max"
         convertErrorsToExceptions="true"
@@ -20,39 +20,19 @@
         stopOnFailure="false"
         verbose="true"
 >
+    <php>
+        <const name="RECTOR_REPOSITORY" value="true"/>
+    </php>
     <testsuites>
-        <testsuite name="all">
-            <directory>./tests</directory>
-        </testsuite>
-        <testsuite name="coverage">
+        <testsuite name="Drupal Fixer Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./src</directory>
-        </whitelist>
-    </filter>
-
-    <listeners>
-        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
-            <arguments>
-                <array>
-                    <element key="slowThreshold">
-                        <integer>100</integer>
-                    </element>
-                </array>
-            </arguments>
-        </listener>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
-    </listeners>
-
-    <php>
-        <ini name="zend.enable_gc" value="0"/>
-        <ini name="memory_limit" value="1G"/>
-        <env name="SKIP_LINT_TEST_CASES" value="0"/>
-        <env name="PHP_CS_FIXER_TEST_ALLOW_SKIPPING_SMOKE_TESTS" value="1"/>
-        <env name="PHP_CS_FIXER_TEST_USE_LEGACY_TOKENIZER" value="0"/>
-    </php>
+    <logging>
+        <log type="tap" target="build/report.tap"/>
+        <log type="junit" target="build/report.junit.xml"/>
+        <log type="coverage-html" target="build/coverage"/>
+        <log type="coverage-text" target="build/coverage.txt"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
 </phpunit>
