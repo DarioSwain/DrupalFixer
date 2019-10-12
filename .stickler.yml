@@ -1,6 +1,7 @@
 linters:
   phpcs:
     fixer: true
+    config: ./phpcs.xml
 files:
   ignore:
     - 'vendor/*'
