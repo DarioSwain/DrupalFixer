@@ -2,6 +2,7 @@ linters:
   phpcs:
     fixer: true
     config: ./phpcs.xml
+    exclude: 'Generic.Files.LineLength'
 files:
   ignore:
     - 'vendor/*'
