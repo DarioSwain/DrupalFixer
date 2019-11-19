@@ -1,0 +1,13 @@
+services:
+    DS\DrupalFixer\Rector\D80\TransformGlobalFunctionsRector:
+        $transformGlobalFunctions:
+            db_insert:
+                replacementType: static
+                static:
+                    class: Drupal
+                    factoryMethod: database
+                    instanceMethod: insert
+
+parameters:
+    exclude_paths:
+        - 'tests/*'

@@ -39,7 +39,10 @@ Rector v0.5.16
 
 ## Usage
 
-TBD
+```
+php ../../vendor/bin/rector -c ../../configs/drupal-9-deprecations.yaml process -a vendor/autoload.php modules/contrib/simple_amp/src/ --dry-run
+
+```
   
 ## License
 
