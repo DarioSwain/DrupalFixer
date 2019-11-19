@@ -1,0 +1,18 @@
+services:
+    DS\DrupalFixer\Rector\D80\TransformGlobalFunctionsRector:
+        drupal_set_message:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: messenger
+                instanceMethod: addMessage
+        db_select:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: database
+                instanceMethod: insert
+parameters:
+    autoload_paths:
+        - 'path_to/drupal_project/to_be/checked/drupal/core/'
+        - 'path_to/drupal_project/to_be/checked/drupal/web/modules/custom/my_module'
