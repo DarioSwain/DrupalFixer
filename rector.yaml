@@ -2,5 +2,5 @@ imports:
     - { resource: 'config/set/drupal/global_function_calls.yaml' }
 parameters:
     autoload_paths:
-        - '../../docker-projects/d8d2/web/core/'
-        - '../../docker-projects/d8d2/web/modules/custom/diagnostic_report'
+        - 'path_to/drupal_project/to_be/checked/drupal/core/'
+        - 'path_to/drupal_project/to_be/checked/custom/custom_code/'
