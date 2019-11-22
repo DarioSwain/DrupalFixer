@@ -14,6 +14,7 @@ namespace DS\DrupalFixer\Rector\D80;
 use phpDocumentor\Reflection\Types\Self_;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use Rector\CodingStyle\Naming\ClassNaming;
@@ -134,11 +135,22 @@ final class TransformGlobalFunctionsRector extends AbstractRector
 
     protected function replaceWithMethodFromStaticFactory(FuncCall $functionNode, array $configuration): ?Node
     {
-        return $this->createMethodCall(
-            $this->createStaticCall($configuration['class'], $configuration['factoryMethod'], []),
+        $factoryMethodParams = !empty($configuration['factoryMethodParams']) ? $this->wrapToArg($configuration['factoryMethodParams']) : [];
+        $node = $this->createStaticCall($configuration['class'], $configuration['factoryMethod'], $factoryMethodParams);
+        $nextMethodConfigurations = isset($configuration['nextMethod']) ? $configuration['nextMethod'] : '' ;
+
+        while (!empty($nextMethodConfigurations)){
+            $node = $this->createMethodCall( $node, $nextMethodConfigurations['methodName'], $nextMethodConfigurations['methodParams']);
+            $nextMethodConfigurations = isset($nextMethodConfigurations['nextMethod']) ? $nextMethodConfigurations['nextMethod'] : '' ;
+        }
+
+        $node = $this->createMethodCall(
+            $node,
             $configuration['instanceMethod'],
             $functionNode->args
         );
+
+        return $node;
     }
 
     /**
@@ -183,5 +195,20 @@ final class TransformGlobalFunctionsRector extends AbstractRector
         if (empty($configuration[$key])) {
             throw new RectorProviderException(sprintf('Required "%s" configuration parameter contains empty value.', $key));
         }
+    }
+
+    /**
+     * @param Expr[]|Arg[] $args
+     * @return Arg[]
+     */
+    private function wrapToArg(array $args): array
+    {
+        foreach ($args as $key => $arg) {
+            if ($arg instanceof Arg) {
+                continue;
+            }
+            $args[$key] = new String_($arg);
+        }
+        return $args;
     }
 }
