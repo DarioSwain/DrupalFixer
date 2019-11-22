@@ -139,8 +139,8 @@ final class TransformGlobalFunctionsRector extends AbstractRector
         $node = $this->createStaticCall($configuration['class'], $configuration['factoryMethod'], $factoryMethodParams);
         $nextMethodConfigurations = isset($configuration['nextMethod']) ? $configuration['nextMethod'] : '' ;
 
-        while (!empty($nextMethodConfigurations)){
-            $node = $this->createMethodCall( $node, $nextMethodConfigurations['methodName'], $nextMethodConfigurations['methodParams']);
+        while (!empty($nextMethodConfigurations)) {
+            $node = $this->createMethodCall($node, $nextMethodConfigurations['methodName'], $nextMethodConfigurations['methodParams']);
             $nextMethodConfigurations = isset($nextMethodConfigurations['nextMethod']) ? $nextMethodConfigurations['nextMethod'] : '' ;
         }
 
