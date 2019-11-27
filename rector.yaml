@@ -1,0 +1,6 @@
+imports:
+    - { resource: 'config/set/drupal/global_function_calls.yaml' }
+parameters:
+    autoload_paths:
+        - 'path_to/drupal_project/to_be/checked/drupal/core/'
+        - 'path_to/drupal_project/to_be/checked/custom/custom_code/'

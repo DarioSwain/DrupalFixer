@@ -1,0 +1,46 @@
+services:
+    DS\DrupalFixer\Rector\D80\TransformGlobalFunctionsRector:
+        drupal_set_message:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: messenger
+                instanceMethod: addMessage
+        file_unmanaged_copy:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: service
+                factoryMethodParams: 
+                    - file_system
+                instanceMethod: copy
+        taxonomy_term_load:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: entityTypeManager
+                nextMethod:
+                    methodName: getStorage
+                    methodParams:
+                        - taxonomy_term
+                instanceMethod: load
+        node_load:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: entityTypeManager
+                nextMethod:
+                    methodName: getStorage
+                    methodParams:
+                        - node
+                instanceMethod: load
+        user_load:
+            replacementType: static
+            static:
+                class: Drupal
+                factoryMethod: entityTypeManager
+                nextMethod:
+                    methodName: getStorage
+                    methodParams:
+                        - user
+                instanceMethod: load                
